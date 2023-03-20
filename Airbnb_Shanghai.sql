@@ -131,6 +131,7 @@ create table reviews_original (select * from reviews);
 
 /*
 select  * from listings;
+select  * from listings_original;
 select * from reviews;
 describe listings;
 describe reviews;
@@ -442,14 +443,3 @@ where id not in (
 		from listing_host
 		group by host_id) as Max_id_for_each_distinct_host);
 select * from listing_host; 
-
-
-select min(datediff(lr.first_review,lh.host_since)) as days_to_get_1st_review  
-from listing_review lr 
-inner join listing_host lh on lr.id=lh.id
-group by host_id
-
-						where id in (
-								select min(id),host_id 
-								from listings
-								group by host_id)
